@@ -1,27 +1,74 @@
 'use client';
+import { tableHeader } from '@/data';
 import PriorityBadge from '@/ui/PriorityBadge';
 import StatusBadge from '@/ui/StatusBadge';
-import { Badge, Button } from 'keep-react';
-import React from 'react';
+import { Button, Modal, Label, TextInput, DatePicker } from 'keep-react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { MdDeleteForever, MdEdit } from 'react-icons/md';
+import { LuListTodo } from 'react-icons/lu';
 
-const tableHeader = [
-  { id: 1, headerTitle: 'Title' },
-  { id: 2, headerTitle: 'Start Date' },
-  { id: 3, headerTitle: 'End Date' },
-  { id: 4, headerTitle: 'Status' },
-  { id: 5, headerTitle: 'Priority' },
-  { id: 6, headerTitle: 'Action' },
-];
 const Todospage = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [date, setDate]: [Date | null, Dispatch<SetStateAction<Date | null>>] =
+    useState<Date | null>(null);
+
+  console.log(date);
   return (
     <section className='md:py-3 py-1 px-2.5'>
       <div className='flex justify-between items-center md:mb-5 mb-2'>
         <h1 className='md:text-8xl text-4xl '>Todos</h1>
-        <Button size='sm' type='primary'>
+        <Button
+          onClick={() => setShowModal(!showModal)}
+          size='sm'
+          type='primary'
+        >
           Add Todo
         </Button>
       </div>
+
+      <Modal
+        icon={<LuListTodo size={28} color='#1B4DFF' />}
+        show={showModal}
+        position='center'
+        size='md'
+      >
+        <Modal.Header>
+          <p className='text-center'>Add Todo</p>
+        </Modal.Header>
+        <Modal.Body>
+          <div className='space-y-6'>
+            <form className='text-slate-900 '>
+              <div>
+                <Label value='Title' />
+                <TextInput
+                  id='#id-17'
+                  placeholder='Enter your todo title'
+                  color='gray'
+                />
+              </div>
+
+              <div>
+                <DatePicker singleDatePicker={setDate}>
+                  <DatePicker.SingleDate />
+                </DatePicker>
+              </div>
+
+              {/* <label
+                htmlFor='title'
+                className='block text-sm font-medium text-gray-700'
+              >
+                Title
+              </label>
+              <input
+                type='text'
+                id='title'
+                name='title'
+                className='mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 block w-full'
+              /> */}
+            </form>
+          </div>
+        </Modal.Body>
+      </Modal>
 
       <div className='relative overflow-x-auto'>
         <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
