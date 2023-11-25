@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 const PriorityBadge = ({ children }: any) => {
   const [color, setColor] = useState('');
-  const text = children.toLowerCase().replace(/\s/g, '');
+  const text = children?.toLowerCase().replace(/\s/g, '') || '';
 
   useEffect(() => {
     if (text === HIGH) {

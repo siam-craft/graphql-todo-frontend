@@ -7,3 +7,11 @@ export const tableHeader = [
   { id: 5, headerTitle: 'Priority' },
   { id: 6, headerTitle: 'Action' },
 ];
+
+// Priority Options
+
+export const priorityOptions = [
+  { id: 1, value: 'low', label: 'Low' },
+  { id: 2, value: 'medium', label: 'Medium' },
+  { id: 3, value: 'high', label: 'High' },
+];

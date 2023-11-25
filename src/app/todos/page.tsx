@@ -1,4 +1,4 @@
-import Todospage from '@/components/Todos/Todospage';
+import Todospage from '@/components/Todos/Todos';
 import React from 'react';
 
 const page = () => {

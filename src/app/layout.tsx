@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 // import { Inter } from 'next/font/google'
 import './globals.css';
 import { NavbarComponent } from '@/components/Navbar/Navbar';
+import GraphQLProvider from '@/components/graphqlProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,10 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className='bg-gradient-to-r from-gray-800 to-black text-white'>
-        <NavbarComponent />
-        <div className='max-w-[1600px] m-auto'>{children}</div>
-      </body>
+      <GraphQLProvider>
+        <body className='bg-gradient-to-r from-gray-800 to-black text-white'>
+          <NavbarComponent />
+          <div className='max-w-[1600px] m-auto'>{children}</div>
+        </body>
+      </GraphQLProvider>
     </html>
   );
 }
