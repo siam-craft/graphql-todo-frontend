@@ -55,10 +55,6 @@ const Todos = () => {
     }
   };
 
-  const handleModalShow = () => {
-    setShowModal(!showModal);
-  };
-
   const handleDeleteTodo = async (todoId: any) => {
     try {
       const res = await deleteTodo({ id: Number(todoId) });
@@ -72,6 +68,10 @@ const Todos = () => {
     setShowModal(!showModal);
     setEditState(true);
     setEditId(todoId);
+  };
+
+  const handleModalShow = () => {
+    setShowModal(!showModal);
   };
 
   const addOpenModal = () => {
