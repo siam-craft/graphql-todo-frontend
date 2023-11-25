@@ -59,24 +59,13 @@ const Todos = () => {
     setShowModal(!showModal);
   };
 
-  const handleDeleteTodo = (todoId: any) => {
-    deleteTodo({ id: Number(todoId) })
-      .then((response) => {
-        if (!response.error) {
-          console.log('Todo deleted successfully', response.data);
-        }
-      })
-      .catch((error) => {
-        console.error('Error while deleting todo:', error);
-        if (error.networkError) {
-          console.error('Network error:', error.networkError);
-        }
-        if (error.graphQLErrors) {
-          error.graphQLErrors.forEach((err: any) =>
-            console.error('GraphQL error:', err),
-          );
-        }
-      });
+  const handleDeleteTodo = async (todoId: any) => {
+    try {
+      const res = await deleteTodo({ id: Number(todoId) });
+      console.log(res.data.deleteTodo.data, 'res');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleEditTodo = (todoId: any) => {
@@ -94,6 +83,7 @@ const Todos = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (!editState) {
+      console.log('subimit add');
       handleAddTodo(title);
     } else {
       console.log('submit edit');
